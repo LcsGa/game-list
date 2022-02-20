@@ -1,0 +1,17 @@
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 12px;
+  background: var(--primary);
+  color: var(--white);
+  border-radius: 50px;
+
+  &--icon {
+    padding-left: 6px;
+  }
+
+  &__label {
+    line-height: 1em;
+  }
+}

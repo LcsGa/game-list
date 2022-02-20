@@ -1,0 +1,4 @@
+<div [ngClass]="{ chip: true, 'chip--icon': platform }">
+  <i *ngIf="platform" [class]="'chip__icon fa-brands fa-' + platform"></i>
+  <p class="chip__label">{{ label ?? platform | titlecase }}</p>
+</div>
