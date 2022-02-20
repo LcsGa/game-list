@@ -1,0 +1,25 @@
+.list-item {
+  background: var(--white);
+  width: 400px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 4px;
+  padding: 6px 12px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+
+  &__icon {
+    transition: all 0.3s ease-in-out;
+  }
+
+  &:hover & {
+    &__icon {
+      transform: translate3d(4px, 0, 0);
+    }
+  }
+
+  &--active {
+    background: var(--secondary);
+  }
+}

@@ -1,0 +1,40 @@
+.card {
+  background: var(--white);
+  border-radius: 12px;
+  overflow: hidden;
+  padding: 16px;
+  display: flex;
+  gap: 16px;
+  flex-direction: column;
+  max-width: 600px;
+
+  &__info {
+    display: flex;
+    gap: 16px;
+  }
+
+  &__img {
+    width: 50%;
+    border-radius: 10px;
+  }
+
+  &__title {
+    color: var(--accent);
+  }
+
+  &__text {
+    text-align: justify;
+  }
+
+  &__description {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  &__chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+}

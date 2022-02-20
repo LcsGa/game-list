@@ -1,1 +1,20 @@
-<app-card></app-card>
+<div class="header">
+  <h1 class="header__title">GameList</h1>
+
+  <div class="header__buttons">
+    <app-button>Ajouter un jeu</app-button>
+  </div>
+</div>
+
+<div class="main">
+  <div class="main__list">
+    <app-list-item
+      *ngFor="let game of games"
+      [game]="game"
+      [isActive]="game === selectedGame"
+      (selectGame)="handleGameSelection($event)"
+    ></app-list-item>
+  </div>
+
+  <app-card [game]="selectedGame"></app-card>
+</div>
