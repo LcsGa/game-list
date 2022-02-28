@@ -1,15 +1,19 @@
 import { NgModule } from "@angular/core";
-import { CardModule } from "./shared/components/card/card.module";
-import { ChipModule } from "./shared/components/chip/chip.module";
 import { BrowserModule } from "@angular/platform-browser";
 import { ButtonModule } from "./shared/components/button/button.module";
-import { ListItemModule } from "./shared/components/list-item/list-item.module";
+import { RouterModule, Routes } from "@angular/router";
 
 import { AppComponent } from "./app.component";
 
+const routes: Routes = [
+  { path: "", pathMatch: "full", redirectTo: "home" },
+  { path: "home", loadChildren: () => import("./home/home.module").then(m => m.HomeModule) },
+  { path: "add-game", loadChildren: () => import("./add-game/add-game.module").then(m => m.AddGameModule)  }
+];
+
 @NgModule({
+  imports: [BrowserModule, ButtonModule, RouterModule.forRoot(routes)],
   declarations: [AppComponent],
-  imports: [BrowserModule, ChipModule, CardModule, ButtonModule, ListItemModule],
   providers: [],
   bootstrap: [AppComponent],
 })

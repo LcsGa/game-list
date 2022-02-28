@@ -1,30 +1,24 @@
-import { Component } from "@angular/core";
-import { Game } from "./shared/models/game.model";
+import { Component, OnInit } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
+import { tap } from 'rxjs';
 
 @Component({
-  selector: "app-root",
-  templateUrl: "./app.component.html",
-  styleUrls: ["./app.component.scss"],
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
-  public games: Game[] = [
-    {
-      title: "Assassin's Creed Valhalla",
-      platforms: [{ platform: "steam" }, { platform: "xbox" }, { platform: "playstation" }],
-      imgUrl: "assets/assassin-s-creed-valhalla.png",
-      text: "Assassin's Creed Valhalla est un jeu vidéo d'action-aventure et de rôle, développé par Ubisoft Montréal et édité par Ubisoft, sorti en novembre 2020 sur Microsoft Windows, PlayStation 4, Xbox One, Xbox Series, Google Stadia et PlayStation 5. Il appartient à la série Assassin's Creed et en est le douzième opus canonique. L'action principale du jeu se déroule pendant l'ère viking.",
-    },
-    {
-      title: "Assassin's Creed Odyssey",
-      platforms: [{ platform: "steam" }, { platform: "xbox" }, { platform: "playstation" }],
-      imgUrl: "assets/assassin-s-creed-odyssey.jpeg",
-      text: "Assassin's Creed Odyssey est une suite indirecte du précédent opus. Dans le présent, le joueur suit toujours Layla Hassan, un membre des Assassins qui explore la mémoire des premiers Assassins. En revanche, l'action se déroule durant la guerre du Péloponnèse en 431 avant Jésus-Christ, soit 382 ans avant l'histoire de Bayek relatée dans Origins et est centrée sur la première civilisation. Le joueur incarne l'un des descendants de Léonidas, Kassandra ou Alexios. À noter que le choix du personnage n’influence en rien le scénario du jeu.",
-    },
-  ];
+export class AppComponent implements OnInit {
+  public isAddGamePage = false;
 
-  public selectedGame = this.games[0];
+  constructor(private readonly router: Router) {}
 
-  public handleGameSelection(game: Game): void {
-    this.selectedGame = game;
+  ngOnInit(): void {
+    this.router.events.pipe(
+      tap((routerEvents) => {
+        if (routerEvents instanceof NavigationEnd) {
+          this.isAddGamePage = routerEvents.url === '/add-game';
+        }
+      })
+    ).subscribe();
   }
 }

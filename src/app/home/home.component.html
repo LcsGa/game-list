@@ -1,0 +1,10 @@
+<div class="game-list">
+  <app-list-item
+    *ngFor="let game of games"
+    [game]="game"
+    [isActive]="game === selectedGame"
+    (selectGame)="handleGameSelection($event)"
+  ></app-list-item>
+</div>
+
+<app-card [game]="selectedGame"></app-card>

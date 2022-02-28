@@ -11,6 +11,10 @@
   padding: 16px 20px;
   background: var(--primary);
   color: white;
+
+  &__title {
+    cursor: pointer;
+  }
 }
 
 .main {
@@ -18,11 +22,4 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 128px;
-
-  &__list {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
 }
