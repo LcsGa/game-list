@@ -1,1 +1,68 @@
-<p>add-game works!</p>
+<form class="add-game-form" [formGroup]="addGameGroup">
+  <h2>Ajouter un jeu :</h2>
+
+  <label for="imgUrl" class="input input-file">
+    <ng-container *ngIf="!image; else imagePreview">
+      <i class="fa-solid fa-image"></i>
+      Uploader
+    </ng-container>
+  </label>
+  <input
+    id="imgUrl"
+    type="file"
+    class="input-file--hidden"
+    accept="image/*"
+    (change)="onImageUpload($event)"
+  />
+
+  <input type="text" class="input input-text" formControlName="title" />
+
+  <ul class="platform-list__container">
+    <li
+      class="platform__list-item"
+      *ngFor="
+        let platform of platformsGroup;
+        let last = last;
+        let index = index;
+        let first = first;
+        let count = count
+      "
+    >
+      <ng-container [formGroup]="platform">
+        <input
+          type="text"
+          class="input input-text"
+          formControlName="platform"
+        />
+
+        <input type="text" class="input input-text" formControlName="label" />
+      </ng-container>
+
+      <app-button
+        buttonStyle="outlined"
+        *ngIf="!first || count > 1"
+        (click)="deletePlatform(index)"
+      >
+        <i class="fa-solid fa-xmark"></i>
+      </app-button>
+
+      <app-button *ngIf="last" (click)="addPlatform()">
+        <i class="fa-solid fa-plus"></i>
+      </app-button>
+    </li>
+  </ul>
+
+  <textarea class="input input-text" formControlName="text"></textarea>
+
+  <div class="button__container">
+    <app-button routerLink="/" buttonStyle="outlined">Annuler</app-button>
+
+    <app-button [disabled]="!addGameGroup.valid" (click)="onSubmit()"
+      >Enregistrer</app-button
+    >
+  </div>
+</form>
+
+<ng-template #imagePreview>
+  <img [src]="image!.base64" alt="Game image" />
+</ng-template>

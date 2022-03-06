@@ -1,10 +1,11 @@
-import { Component, EventEmitter, Input, Output } from "@angular/core";
+import { Component, Input } from "@angular/core";
 import { Game } from "../../models/game.model";
+import { GamesService } from "../../services/games.service";
 
 @Component({
   selector: "app-list-item",
   template: `
-    <div [ngClass]="{ 'list-item': true, 'list-item--active': isActive }" (click)="selectGame.emit(game)">
+    <div [ngClass]="{ 'list-item': true, 'list-item--active': isActive }" (click)="selectGame()">
       <p>{{ game.title }}</p>
 
       <i class="list-item__icon fa-solid fa-chevron-right"></i>
@@ -19,6 +20,9 @@ export class ListItemComponent {
   @Input()
   public isActive = false;
 
-  @Output()
-  public selectGame = new EventEmitter<Game>();
+  constructor(private readonly gamesService: GamesService) {}
+
+  public selectGame(): void {
+    this.gamesService.selectedGame$$.next(this.game);
+  }
 }

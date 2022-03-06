@@ -1,11 +1,11 @@
 export interface Game {
   title: string;
   platforms: Chip[];
-  imgUrl: string;
+  imageURL: string;
   text: string;
 }
 
 export interface Chip {
-  platform: string;
+  platform?: string;
   label?: string;
 }

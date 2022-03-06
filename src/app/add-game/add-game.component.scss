@@ -1,0 +1,11 @@
+.add-game-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.button {
+  &__container {
+    display: flex;
+    gap: 1rem;
+  }
+}

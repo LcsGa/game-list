@@ -3,9 +3,12 @@
   --primary: #3e497a;
   --secondary: #f1d00a;
   --white: #f0f0f0;
+  --grey: #ced4da;
+
+  --font-family: "Roboto", sans-serif;
 
   font-size: 16px;
-  font-family: "Roboto", sans-serif;
+  font-family: var(--font-family);
   color: var(--accent);
 }
 
@@ -13,4 +16,46 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  outline: none;
+}
+
+ul {
+  list-style: none;
+}
+
+// GENERIC FIELDS
+
+.input {
+  background: #fff;
+  border: 1px solid var(--grey);
+  padding: 12px;
+  border-radius: 6px;
+
+  &-file {
+    align-self: flex-start;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #ccc;
+    cursor: pointer;
+    transition: background 0.1s ease-in-out, border-color 0.1s ease-in-out, color 0.1s ease-in-out;
+
+    &:hover {
+      color: #aaa;
+      border-color: #aaa;
+    }
+
+    i {
+      font-size: 3rem;
+    }
+
+    &--hidden {
+      display: none;
+    }
+  }
+
+  &-text {
+    font-family: var(--font-family);
+    letter-spacing: 0.06em;
+  }
 }

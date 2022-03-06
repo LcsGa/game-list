@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { tap } from 'rxjs';
+import { GamesService } from './shared/services/games.service';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +11,7 @@ import { tap } from 'rxjs';
 export class AppComponent implements OnInit {
   public isAddGamePage = false;
 
-  constructor(private readonly router: Router) {}
+  constructor(private readonly router: Router, private readonly gamesService: GamesService) {}
 
   ngOnInit(): void {
     this.router.events.pipe(
@@ -20,5 +21,7 @@ export class AppComponent implements OnInit {
         }
       })
     ).subscribe();
+
+    this.gamesService.fetchGames().subscribe();
   }
 }

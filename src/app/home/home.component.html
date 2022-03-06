@@ -1,10 +1,11 @@
-<div class="game-list">
-  <app-list-item
-    *ngFor="let game of games"
+<ng-container *ngIf="selectedGame$ | async as selectedGame">
+  <div class="game-list">
+    <app-list-item
+    *ngFor="let game of (games$ | async)"
     [game]="game"
     [isActive]="game === selectedGame"
-    (selectGame)="handleGameSelection($event)"
-  ></app-list-item>
-</div>
+    ></app-list-item>
+  </div>
 
-<app-card [game]="selectedGame"></app-card>
+  <app-card [game]="selectedGame"></app-card>
+</ng-container>

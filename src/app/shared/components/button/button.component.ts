@@ -1,28 +1,20 @@
-import { Component } from "@angular/core";
+import { Component, Input } from "@angular/core";
 
 @Component({
   selector: "app-button",
-  template: "<button><ng-content></ng-content></button>",
-  styles: [
-    `
-      button {
-        background: var(--primary);
-        color: var(--secondary);
-        border: 1px solid var(--secondary);
-        border-radius: 4px;
-        padding: 6px 12px;
-        font-family: "Roboto", sans-serif;
-        font-weight: 500;
-        letter-spacing: 0.04em;
-        cursor: pointer;
-        transition: all 0.2s ease-in-out;
-      }
-
-      button:hover {
-        background: var(--secondary);
-        color: var(--primary);
-      }
-    `,
-  ],
+  template: `<button [disabled]="disabled" [ngClass]="buttonClass"><ng-content></ng-content></button>`,
+  styleUrls: ["./button.component.scss"],
 })
-export class ButtonComponent {}
+export class ButtonComponent {
+
+  @Input()
+  public disabled = false;
+
+  @Input()
+  public buttonStyle: "primary" | "outlined" = "primary";
+
+  public get buttonClass(): string {
+    return `button button--${this.buttonStyle}`;
+  }
+
+}
